@@ -17,6 +17,12 @@
 			<li><a href="{{ route('home') }}">Home</a></li>
 			<li><a href="{{ route('about.index') }}">About</a></li>
 			<li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
-			<li><a href="{{ route('contact.index') }}">Contact</a></li>
+			
+            @auth
+                @if (auth()->user()->rol === 'admin')
+                <li><a href="{{ route('contact.index') }}">Contact</a></li>
+            @endif
+            @endauth
+           
 		</ul>	
 	</nav>

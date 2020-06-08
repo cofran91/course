@@ -11,6 +11,11 @@ class PortfolioController extends Controller
     // {
     //     $this->middleware('auth', ['only'=>['createindex','createstore']]);
     // }
+
+    public function __construct()
+    {
+        $this->middleware('rol', ['only'=>['contactindex']]);
+    }
     
     public function index(){ 
         return view('home');
