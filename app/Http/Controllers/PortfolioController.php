@@ -7,6 +7,11 @@ use App\Project;
 
 class PortfolioController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth', ['only'=>['createindex','createstore']]);
+    // }
+    
     public function index(){ 
         return view('home');
     }
@@ -83,6 +88,6 @@ class PortfolioController extends Controller
 
         $projectdelete->delete();
 
-        return redirect()->route('portfolio.index', compact('project_url'));
+        return redirect()->route('portfolio.index');
     }
 }
