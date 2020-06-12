@@ -14,8 +14,14 @@ class VerifyRol
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if (auth()->user()->rol === 'admin'){
+    {   
+
+        $roles = func_get_args();
+        $roles = array_slice($roles, 2);
+        // dd($roles);
+        // exit();
+
+        if (auth()->user()->hasRoles($roles) ){
             return $next($request);
         }
         else{

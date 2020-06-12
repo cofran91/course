@@ -2,7 +2,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        {{auth()->user()->name}}
+                        {{auth()->user()->rol['name']}}
+                        {{-- <a href="{{ url('/home') }}">Home</a> --}}
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button>Logout</button>
+                        </form>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -19,9 +25,9 @@
 			<li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
 			
             @auth
-                @if (auth()->user()->rol === 'admin')
-                <li><a href="{{ route('contact.index') }}">Contact</a></li>
-            @endif
+                @if ( auth()->user()->hasRoles(['admin', 'client']) )
+                    <li><a href="{{ route('contact.index') }}">Contact</a></li>
+                @endif
             @endauth
            
 		</ul>	

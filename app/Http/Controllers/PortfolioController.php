@@ -14,7 +14,7 @@ class PortfolioController extends Controller
 
     public function __construct()
     {
-        $this->middleware('rol', ['only'=>['contactindex']]);
+        $this->middleware('rol:admin,client', ['only'=>['contactindex']]);
     }
     
     public function index(){ 
